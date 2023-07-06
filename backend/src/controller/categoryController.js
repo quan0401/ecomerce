@@ -1,17 +1,15 @@
-import Category from "../models/CategoryModel";
+const Category = require("../models/CategoryModel");
 
-export const getAllController = async (req, res, next) => {
+const getAllController = async (req, res, next) => {
   try {
-    // orFail() when there is no category error will be thrown
     const result = await Category.find().sort({ name: "asc" }).orFail();
-
     res.status(200).json(result);
   } catch (error) {
     next(error);
   }
 };
 
-export const newCategoryController = async (req, res, next) => {
+const newCategoryController = async (req, res, next) => {
   try {
     const { name } = req.body;
 
@@ -32,7 +30,7 @@ export const newCategoryController = async (req, res, next) => {
   }
 };
 
-export const deleteCategoryController = async (req, res, next) => {
+const deleteCategoryController = async (req, res, next) => {
   try {
     const { category } = req.params;
 
@@ -51,11 +49,10 @@ export const deleteCategoryController = async (req, res, next) => {
   }
 };
 
-export const saveAttributeController = async (req, res, next) => {
+const saveAttributeController = async (req, res, next) => {
   try {
     const { key, value, categoryChosen } = req.body;
 
-    // Computers/laptop/Dell
     const category = categoryChosen.split("/")[0];
 
     if (!key || !value || !categoryChosen)
@@ -66,10 +63,8 @@ export const saveAttributeController = async (req, res, next) => {
     let attrNotExist = true;
 
     categoryExists.attributes.forEach((attr, index) => {
-      // Check if the key is existed, if yes set the value and handle the duplicate
       if (attr.key === key) {
         attrNotExist = false;
-
         attr.value = [...new Set([...attr.value, value])];
       }
     });
@@ -84,4 +79,11 @@ export const saveAttributeController = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+module.exports = {
+  getAllController,
+  newCategoryController,
+  deleteCategoryController,
+  saveAttributeController,
 };

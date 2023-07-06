@@ -1,5 +1,5 @@
-import express from "express";
-import {
+const express = require("express");
+const {
   createOrder,
   getOrder,
   getOrders,
@@ -8,8 +8,11 @@ import {
   testMomo,
   updateOrderToDelivered,
   updateOrderToPaid,
-} from "../controller/orderController";
-import { verifyAdmin, verifyIsLoggedIn } from "../middleware/verifyAuthToken";
+} = require("../controller/orderController");
+const {
+  verifyAdmin,
+  verifyIsLoggedIn,
+} = require("../middleware/verifyAuthToken");
 
 const orderRoutes = express.Router();
 
@@ -27,4 +30,4 @@ orderRoutes.put("/delivered/:id", updateOrderToDelivered);
 orderRoutes.get("/admin", getOrders);
 orderRoutes.get("/analysis", getOrdersForAnalysis);
 
-export default orderRoutes;
+module.exports = orderRoutes;

@@ -1,31 +1,29 @@
-import Order from "../models/OrderModel";
-import mongoose from "mongoose";
-import Product from "../models/ProductModel";
+const Order = require("../models/OrderModel");
+const mongoose = require("mongoose");
+const Product = require("../models/ProductModel");
 
-export const getUserOrders = async (req, res, next) => {
+const getUserOrders = async (req, res, next) => {
   try {
     const userId = new mongoose.Types.ObjectId(req.user._id);
     const orders = await Order.find({ user: { _id: userId } });
-
     res.status(200).send(orders);
   } catch (error) {
     next(error);
   }
 };
 
-export const getOrder = async (req, res, next) => {
+const getOrder = async (req, res, next) => {
   try {
     const orders = await Order.findById(req.params.id)
       .populate("user", "-password -_id -isAdmin -createdAt -updatedAt -__v")
       .orFail();
-
     res.status(200).send(orders);
   } catch (error) {
     next(error);
   }
 };
 
-export const createOrder = async (req, res, next) => {
+const createOrder = async (req, res, next) => {
   try {
     const { orderTotal, cartItems, paymentMethod } = req.body;
     if (!(orderTotal && cartItems && paymentMethod))
@@ -58,20 +56,19 @@ export const createOrder = async (req, res, next) => {
   }
 };
 
-export const updateOrderToPaid = async (req, res, next) => {
+const updateOrderToPaid = async (req, res, next) => {
   try {
     const order = await Order.findById(req.params.id);
     order.isPaid = true;
     order.paidAt = Date.now();
     const updatedOrder = await order.save();
-
     res.status(200).send(updatedOrder);
   } catch (error) {
     next(error);
   }
 };
 
-export const updateOrderToDelivered = async (req, res, next) => {
+const updateOrderToDelivered = async (req, res, next) => {
   try {
     const order = await Order.findOneAndUpdate(
       {
@@ -87,14 +84,13 @@ export const updateOrderToDelivered = async (req, res, next) => {
       ],
       { new: true }
     );
-    // if multiple updates use [] else use {}
     res.status(200).send(order);
   } catch (error) {
     next(error);
   }
 };
 
-export const getOrders = async (req, res, next) => {
+const getOrders = async (req, res, next) => {
   try {
     const orders = await Order.find()
       .populate("user", "-password")
@@ -105,11 +101,10 @@ export const getOrders = async (req, res, next) => {
   }
 };
 
-export const getOrdersForAnalysis = async (req, res, next) => {
+const getOrdersForAnalysis = async (req, res, next) => {
   try {
     const start = new Date(req.query.firstDate);
     start.setHours(0, 0, 0, 0);
-    // start.setHours(23, 59, 59, 999);
     const end = new Date(req.query.firstDate);
     end.setHours(23, 59, 59, 999);
 
@@ -123,7 +118,7 @@ export const getOrdersForAnalysis = async (req, res, next) => {
   }
 };
 
-export const testMomo = async (req, res, next) => {
+const testMomo = async (req, res, next) => {
   try {
     let result;
     await Order.aggregate([{ $match: { paymentMethod: "momo" } }]).then(
@@ -141,4 +136,15 @@ export const testMomo = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+module.exports = {
+  getUserOrders,
+  getOrder,
+  createOrder,
+  updateOrderToPaid,
+  updateOrderToDelivered,
+  getOrders,
+  getOrdersForAnalysis,
+  testMomo,
 };

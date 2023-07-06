@@ -1,25 +1,24 @@
-// const connectDB = require("../config/db");
-import connectDB from "../config/db";
+const connectDB = require("../config/db");
 
 // Seeder for Category
-import categories from "./categories";
-import Category from "../models/CategoryModel";
+const categories = require("./categories");
+const Category = require("../models/CategoryModel");
 
 // Seeder for Product
-import Product from "../models/ProductModel";
-import products from "./products";
+const Product = require("../models/ProductModel");
+const products = require("./products");
 
 // Seeder for Review
-import Review from "../models/ReviewModel";
-import reviews from "./reviews";
+const Review = require("../models/ReviewModel");
+const reviews = require("./reviews");
 
 // Seeder for User
-import User from "../models/UserModel";
-import users from "./users";
+const User = require("../models/UserModel");
+const users = require("./users");
 
 // Seeder for order
-import Order from "../models/OrderModel";
-import orders from "./orders";
+const Order = require("../models/OrderModel");
+const orders = require("./orders");
 
 const importData = async () => {
   connectDB();
@@ -51,4 +50,4 @@ const importData = async () => {
     process.exit(1);
   }
 };
-export default importData;
+module.exports = importData;

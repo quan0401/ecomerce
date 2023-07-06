@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb";
+const { ObjectId } = require("mongodb");
 
 const reviews = [
   {
@@ -43,4 +43,4 @@ const reviews = [
     },
   },
 ];
-export default reviews;
+module.exports = reviews;

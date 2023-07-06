@@ -1,9 +1,9 @@
-import express from "express";
-import productRoutes from "./productRoutes";
-import orderRoutes from "./orderRoutes";
-import categoryRoutes from "./categoryRoutes";
-import userRoutes from "./userRoutes";
-import { verify } from "jsonwebtoken";
+const express = require("express");
+const productRoutes = require("./productRoutes");
+const orderRoutes = require("./orderRoutes");
+const categoryRoutes = require("./categoryRoutes");
+const userRoutes = require("./userRoutes");
+const { verify } = require("jsonwebtoken");
 require("dotenv").config();
 
 const app = express();
@@ -39,4 +39,4 @@ app.use("/orders", orderRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/users", userRoutes);
 
-export default app;
+module.exports = app;

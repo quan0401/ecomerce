@@ -1,16 +1,16 @@
-import Product from "../models/ProductModel";
+const Product = require("../models/ProductModel");
 
-import recordsPerPage from "../config/pagination";
+const recordsPerPage = require("../config/pagination");
 
-import imageValidate from "../utils/validateImage";
+const imageValidate = require("../utils/validateImage");
 
-import path from "path";
+const path = require("path");
 
-import { v4 as uuidv4 } from "uuid";
+const { v4: uuidv4 } = require("uuid");
 
-import fs from "fs";
+const fs = require("fs");
 
-export const getProducts = async (req, res, next) => {
+exports.getProducts = async (req, res, next) => {
   try {
     // They are the same
     // const result = await Product.find().sort({ name: 'asc' });
@@ -169,7 +169,7 @@ export const getProducts = async (req, res, next) => {
   }
 };
 
-export const getProductById = async (req, res, next) => {
+exports.getProductById = async (req, res, next) => {
   try {
     const result = await Product.findById(req.params.id)
       .populate("reviews")
@@ -181,7 +181,7 @@ export const getProductById = async (req, res, next) => {
   }
 };
 
-export const getBestseller = async (req, res, next) => {
+exports.getBestseller = async (req, res, next) => {
   try {
     // aggregate exampler book 100$, book 50$, Camera 100$, Camera 40$
     // const products = await Product.aggregate([
@@ -227,7 +227,7 @@ export const getBestseller = async (req, res, next) => {
   }
 };
 
-export const adminGetProdcts = async (req, res, next) => {
+exports.adminGetProdcts = async (req, res, next) => {
   try {
     const products = await Product.find()
       .sort({ category: 1 })
@@ -240,7 +240,7 @@ export const adminGetProdcts = async (req, res, next) => {
   }
 };
 
-export const adminDeleteProduct = async (req, res, next) => {
+exports.adminDeleteProduct = async (req, res, next) => {
   try {
     const productId = req.params.id || "";
 
@@ -256,7 +256,7 @@ export const adminDeleteProduct = async (req, res, next) => {
   }
 };
 
-export const adminCreateProduct = async (req, res, next) => {
+exports.adminCreateProduct = async (req, res, next) => {
   try {
     const {
       name,
@@ -288,7 +288,7 @@ export const adminCreateProduct = async (req, res, next) => {
   }
 };
 
-export const adminUpdateProduct = async (req, res, next) => {
+exports.adminUpdateProduct = async (req, res, next) => {
   try {
     const productId = req.params.id;
 
@@ -322,7 +322,7 @@ export const adminUpdateProduct = async (req, res, next) => {
   }
 };
 
-export const adminDeleteAll = async (req, res, next) => {
+exports.adminDeleteAll = async (req, res, next) => {
   try {
     const name = req.params.name;
 
@@ -336,7 +336,7 @@ export const adminDeleteAll = async (req, res, next) => {
   }
 };
 
-export const adminUploadFile = async (req, res, next) => {
+exports.adminUploadFile = async (req, res, next) => {
   if (req.query.cloudinary === "true") {
     try {
       const product = await Product.findById(req.query.productId).orFail();
@@ -423,7 +423,7 @@ export const adminUploadFile = async (req, res, next) => {
   }
 };
 
-export const adminDeleteProductImage = async (req, res, next) => {
+exports.adminDeleteProductImage = async (req, res, next) => {
   const imagePath = decodeURIComponent(req.params.imagePath);
   const productId = req.params.productId || "";
   if (req.query.cloudinary === "true") {

@@ -1,12 +1,15 @@
-import express from "express";
-import {
+const express = require("express");
+const {
   deleteCategoryController,
   getAllController,
   newCategoryController,
   saveAttributeController,
-} from "../controller/categoryController";
+} = require("../controller/categoryController");
 
-import { verifyAdmin, verifyIsLoggedIn } from "../middleware/verifyAuthToken";
+const {
+  verifyAdmin,
+  verifyIsLoggedIn,
+} = require("../middleware/verifyAuthToken");
 
 const router = express.Router();
 
@@ -20,4 +23,4 @@ router.delete("/:category", deleteCategoryController);
 
 router.post("/attribute", saveAttributeController);
 
-export default router;
+module.exports = router;

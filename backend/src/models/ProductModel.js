@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import Review from "./ReviewModel";
+const mongoose = require("mongoose");
+const Review = require("./ReviewModel");
 
 const imageSchema = mongoose.Schema({
   url: { type: String, required: true },
@@ -62,4 +62,4 @@ productSchema.index(
 
 productSchema.index({ "attributes.key": 1, "attributes.value": 1 });
 
-export default Product;
+module.exports = Product;

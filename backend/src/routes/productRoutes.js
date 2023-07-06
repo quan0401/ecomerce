@@ -1,6 +1,6 @@
-import express from "express";
+const express = require("express");
 
-import {
+const {
   getProducts,
   getProductById,
   getBestseller,
@@ -11,9 +11,12 @@ import {
   adminUpdateProduct,
   adminUploadFile,
   adminDeleteProductImage,
-} from "../controller/productController";
+} = require("../controller/productController");
 
-import { verifyAdmin, verifyIsLoggedIn } from "../middleware/verifyAuthToken";
+const {
+  verifyAdmin,
+  verifyIsLoggedIn,
+} = require("../middleware/verifyAuthToken");
 
 const productRoutes = express.Router();
 
@@ -26,9 +29,6 @@ productRoutes.get("/category/:categoryName/search/:searchQuery", getProducts);
 productRoutes.get("/search/:searchQuery", getProducts);
 
 productRoutes.get("/bestseller", getBestseller);
-
-// best seller need to be put above id
-// productRoutes.get("/:id", getProductById);
 
 productRoutes.get("/get-one/:id", getProductById);
 
@@ -52,4 +52,4 @@ productRoutes.delete(
 
 productRoutes.delete("/admin/delete/:name", adminDeleteAll);
 
-export default productRoutes;
+module.exports = productRoutes;

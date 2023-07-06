@@ -1,5 +1,3 @@
-import { ObjectId } from "mongodb";
-
 const orders = [
   {
     user: "61513aa2210b6e2e1c5c327d",
@@ -85,4 +83,4 @@ const orders = [
   },
 ];
 
-export default orders;
+module.exports = orders;

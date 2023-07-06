@@ -1,5 +1,5 @@
-import express from "express";
-import {
+const express = require("express");
+const {
   getAll,
   registerUser,
   login,
@@ -9,8 +9,11 @@ import {
   getUser,
   updateUser,
   deleteUser,
-} from "../controller/userController";
-import { verifyAdmin, verifyIsLoggedIn } from "../middleware/verifyAuthToken";
+} = require("../controller/userController");
+const {
+  verifyAdmin,
+  verifyIsLoggedIn,
+} = require("../middleware/verifyAuthToken");
 
 const userRoutes = express.Router();
 
@@ -30,4 +33,4 @@ userRoutes.get("/:id", getUser);
 userRoutes.put("/:id", updateUser);
 userRoutes.delete("/:id", deleteUser);
 
-export default userRoutes;
+module.exports = userRoutes;

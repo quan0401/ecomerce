@@ -15,5 +15,4 @@ const imageValidate = (images) => {
   if (!result) return { error: "Not image type" };
   return { error: false };
 };
-
-export default imageValidate;
+module.exports = imageValidate;

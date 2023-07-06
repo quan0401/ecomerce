@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import User from "./UserModel";
+const mongoose = require("mongoose");
+const User = require("./UserModel");
 
 const orderSchema = mongoose.Schema(
   {
@@ -59,4 +59,4 @@ Order.watch().on("change", (data) => {
   }
 });
 
-export default Order;
+module.exports = Order;

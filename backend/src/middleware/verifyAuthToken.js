@@ -1,8 +1,8 @@
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 // var decoded = jwt.verify(token, "shhhhh");
 
-export const verifyIsLoggedIn = (req, res, next) => {
+const verifyIsLoggedIn = (req, res, next) => {
   try {
     const { access_token } = req.cookies;
     if (!access_token)
@@ -20,7 +20,7 @@ export const verifyIsLoggedIn = (req, res, next) => {
   }
 };
 
-export const verifyAdmin = (req, res, next) => {
+const verifyAdmin = (req, res, next) => {
   try {
     if (req?.user?.isAdmin) next();
     else res.status(401).send("Unauthorized. Admin required");
@@ -28,3 +28,5 @@ export const verifyAdmin = (req, res, next) => {
     next(error);
   }
 };
+
+module.exports = { verifyIsLoggedIn, verifyAdmin };

@@ -1,12 +1,12 @@
-import User from "../models/UserModel";
-import Review from "../models/ReviewModel";
-import mongoose from "mongoose";
-import generateAuthToken from "../utils/generateAuthToken";
-import { comparePassword, hassPassword } from "../utils/password";
-import Product from "../models/ProductModel";
+const User = require("../models/UserModel");
+const Review = require("../models/ReviewModel");
+const mongoose = require("mongoose");
+const generateAuthToken = require("../utils/generateAuthToken");
+const { comparePassword, hassPassword } = require("../utils/password");
+const Product = require("../models/ProductModel");
 require("dotenv").config();
 
-export const getAll = async (req, res, next) => {
+exports.getAll = async (req, res, next) => {
   try {
     const users = await User.find().select("-password");
 
@@ -16,7 +16,7 @@ export const getAll = async (req, res, next) => {
   }
 };
 
-export const registerUser = async (req, res, next) => {
+exports.registerUser = async (req, res, next) => {
   try {
     const { firstName, lastName, email, password } = req.body;
     if (!(firstName && lastName && email && password))
@@ -57,7 +57,7 @@ export const registerUser = async (req, res, next) => {
   }
 };
 
-export const login = async (req, res, next) => {
+exports.login = async (req, res, next) => {
   try {
     const { email, password, doNotLogout } = req.body;
     if (!(email && password))
@@ -105,7 +105,7 @@ export const login = async (req, res, next) => {
   }
 };
 
-export const updateUserProfile = async (req, res, next) => {
+exports.updateUserProfile = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id).orFail();
     const check = comparePassword(req.body.oldPassword, user.password);
@@ -137,7 +137,7 @@ export const updateUserProfile = async (req, res, next) => {
   }
 };
 
-export const getUserProfile = async (req, res, next) => {
+exports.getUserProfile = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id)
       .select("-password -createdAt -updatedAt -__v")
@@ -148,7 +148,7 @@ export const getUserProfile = async (req, res, next) => {
   }
 };
 
-export const writeReview = async (req, res, next) => {
+exports.writeReview = async (req, res, next) => {
   try {
     const productId = req.params.productId;
     const { rating, comment } = req.body;
@@ -196,7 +196,7 @@ export const writeReview = async (req, res, next) => {
   }
 };
 
-export const getUser = async (req, res, next) => {
+exports.getUser = async (req, res, next) => {
   try {
     const { email, firstName, lastName, isAdmin } = await User.findById(
       req.params.id
@@ -210,7 +210,7 @@ export const getUser = async (req, res, next) => {
   }
 };
 
-export const updateUser = async (req, res, next) => {
+exports.updateUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id)
       .select("firstName lastName email isAdmin")
@@ -229,7 +229,7 @@ export const updateUser = async (req, res, next) => {
   }
 };
 
-export const deleteUser = async (req, res, next) => {
+exports.deleteUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id).orFail();
     const result = await user.deleteOne();

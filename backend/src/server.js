@@ -1,24 +1,15 @@
 require("dotenv").config();
 
-import express from "express";
-
-import connectDB from "./config/db";
-
-import apiRoutes from "./routes/apiRoutes";
-
-import bodyParser from "body-parser";
-
-import fileUpload from "express-fileupload";
-
-import cookieParser from "cookie-parser";
-
-import importData from "./seeder/seeder";
-
-import helmet from "helmet";
-
-import { Server } from "socket.io";
-
-import { createServer } from "http";
+const express = require("express");
+const connectDB = require("./config/db");
+const apiRoutes = require("./routes/apiRoutes");
+const bodyParser = require("body-parser");
+const fileUpload = require("express-fileupload");
+const cookieParser = require("cookie-parser");
+const importData = require("./seeder/seeder");
+const helmet = require("helmet");
+const { Server } = require("socket.io");
+const { createServer } = require("http");
 
 const app = express();
 
@@ -88,19 +79,19 @@ io.on("connection", (socket) => {
   });
 });
 
-const path = require("path");
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../../frontend/build")));
-  app.get("*", (req, res) =>
-    res.sendFile(
-      path.resolve(__dirname, "../../frontend", "build", "index.html")
-    )
-  );
-} else {
-  app.get("/", (req, res) => {
-    res.json({ message: "API running..." });
-  });
-}
+// const path = require("path");
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../../frontend/build")));
+//   app.get("*", (req, res) =>
+//     res.sendFile(
+//       path.resolve(__dirname, "../../frontend", "build", "index.html")
+//     )
+//   );
+// } else {
+//   app.get("/", (req, res) => {
+//     res.json({ message: "API running..." });
+//   });
+// }
 
 // Use Helmet!
 app.use(helmet());
