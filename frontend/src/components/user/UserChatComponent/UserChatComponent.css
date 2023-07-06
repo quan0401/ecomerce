@@ -1,0 +1,99 @@
+.chat-circle {
+  background-color: lightblue;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+}
+
+.dot-nofitication {
+  position: absolute;
+  color: red;
+  font-size: 1rem;
+  top: -6px;
+  left: 0;
+}
+
+.chat-popup {
+  position: fixed;
+  display: flex;
+  bottom: 110px;
+  right: 30px;
+  width: 100%;
+  z-index: 1;
+}
+
+.form-popup {
+  position: fixed;
+  bottom: 120px;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  border-radius: 8px;
+}
+
+.form-container {
+  width: 400px;
+  padding: 10px;
+  background-color: white;
+}
+
+.chat-container {
+  /* min-height: 200px; */
+  height: 300px;
+  overflow: auto;
+}
+
+.chat-container .client {
+}
+
+.chat-msg-container {
+  display: flex;
+  margin: 0 8px;
+}
+
+.chat-msg-container.client {
+  justify-content: right;
+}
+
+.chat-msg-container.client .chat-msg {
+  background-color: lightpink;
+}
+
+.chat-msg {
+  background-color: lightblue;
+  border-radius: 10px;
+  padding: 5px;
+  max-width: 200px;
+}
+
+.chat-msg-container + .chat-msg-container {
+  margin-top: 8px;
+}
+
+/* Full-width textarea */
+
+.form-container textarea {
+  width: 100%;
+  padding: 0 15px;
+  /* margin: 5px 0 22px 0; */
+  border: none;
+  background-color: #f1f1f1;
+  resize: none;
+  min-height: 20px;
+}
+
+/* When the textarea gets focus, do something */
+
+.form-container textarea:focus {
+  /* outline: none; */
+  background-color: #f1f1f1;
+}

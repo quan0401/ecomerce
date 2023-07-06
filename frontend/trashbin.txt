@@ -1,0 +1,211 @@
+{ io 
+ 
+{
+      transports: ["websocket"],
+    }
+ 
+{
+      transports: ["websocket"],
+    })
+ 
+o("http://localhost:8000", {
+      transports: ["polling"],
+    });
+ 
+/admin/analytics
+ 
+ttp://your-server-url
+ 
+ENDPOINT, {
+      transports: ["websocket"],
+    }
+ 
+OfDate1
+ 
+style={{ height: "10%" }}
+ 
+h-100
+ 
+className="d-flex align-items-center justify-content-center"
+ 
+console.log(firstDate);
+ 
+secondDate
+ 
+&secondDate=${secondDate}
+ 
+"slide"
+ 
+style={{ height: "40vh" }}
+ 
+ height: "300px"
+ 
+images/img1.jpeg"
+ 
+(
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            style={{ objectFit: "cover", height: "300px" }}
+            src="images/img1.jpeg"
+            alt="First slide"
+          />
+
+          <LinkContainer to="/product-detail" style={{ cursor: "pointer" }}>
+            <Carousel.Caption>
+              <h3>Best Laptop</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption>
+          </LinkContainer>
+        </Carousel.Item>
+ 
+console.log(123);
+ 
+ if (e.key === "Enter") {
+        console.log("enter");
+      }
+    }
+ 
+f (e.key === "Enter") {
+        console.log("enter");
+      }
+    }
+ 
+else if (searchQuery ) {
+
+      }
+ 
+className="align-items-center"
+ 
+"tesing", 
+ 
+value
+ 
+ else urlAttributes += `,${item}`;
+ 
+ : (
+              <h1>Loading</h1>
+            )}
+ 
+console.log(innerKey);
+ 
+if ()
+ 
+2
+ 
+<Pagination.Next disabled={paginationLinksNumber === pageNum} />
+ 
+Navigate
+ 
+pathname
+ 
+.indexOf("category")
+ 
+.split("/")
+ 
+/\/[0-9]+$/
+ 
+.match("http://localhost:3000/product-list/category/Books,Fiction")
+ 
+|| "";
+ 
+console.log(sortOption);
+ 
+useLoaderData
+ 
+if ()
+ 
+{
+                  ...prev,
+                  [e.target.value]: e.target.checked,
+                }
+ 
+checked
+ 
+value
+ 
+{}
+ 
+img={img}
+ 
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [orders, setOrders] = useState([]);
+
+  const getDate = (setDate) => {
+    const date = new Date(setDate);
+    return date.toLocaleDateString();
+  };
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    getOrdersAdmin(abortController)
+      .then((res) => {
+        if (Array.isArray(res)) setOrders(res);
+      })
+      .catch((error) => {
+        dispatch(
+          logoutState(function () {
+            navigate("/login");
+          })
+        );
+      });
+    return () => abortController.abort();
+  }, []);
+
+  return (
+    <Container>
+      <Row className="mt-3">
+        <Col md={2}>
+          <AdminLinksComponent />
+        </Col>
+        <Col md={10}>
+          <h1>Orders</h1>
+
+          <Table bordered striped hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>User</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Subtotal</th>
+                <th>Delivered</th>
+                <th>Order detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>
+                    {order?.user?.firstName + " " + order?.user?.lastName}
+                  </td>
+                  <td>{getDate(order.createdAt)}</td>
+                  <td>{order?.orderTotal?.itemsCount}</td>
+                  <td>{order?.orderTotal?.cartSubTotal} $</td>
+                  <td>
+                    {order?.isDelivered === true ? (
+                      <i className="bi bi-check-lg text-success"></i>
+                    ) : (
+                      <i className="bi bi-x-lg text-danger"></i>
+                    )}
+                  </td>
+                  <td>
+                    <Link to={"/user/order-detail/" + order._id}>
+                      Go to order
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Col>
+      </Row>
+    </Container>
+  );
+
+ 
+toast.error(res)
+ 
