@@ -9,4 +9,4 @@ const generateAuthToken = (_id, firstName, lastName, email, isAdmin) => {
   );
 };
 
-export default generateAuthToken;
+module.exports = generateAuthToken;
