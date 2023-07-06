@@ -15,6 +15,14 @@ const app = express();
 
 const port = 8000;
 
+// Use Helmet!
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
+  })
+);
+
 // socket io
 const httpSever = createServer(app);
 global.io = new Server(httpSever);
@@ -79,23 +87,6 @@ io.on("connection", (socket) => {
   });
 });
 
-const path = require("path");
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../../frontend/build")));
-  app.get("*", (req, res) =>
-    res.sendFile(
-      path.resolve(__dirname, "../../frontend", "build", "index.html")
-    )
-  );
-} else {
-  app.get("/", (req, res) => {
-    res.json({ message: "API running..." });
-  });
-}
-
-// Use Helmet!
-app.use(helmet());
-
 // File upload
 app.use(fileUpload());
 
@@ -116,6 +107,20 @@ connectDB();
 
 // Api routes
 app.use("/api", apiRoutes);
+
+const path = require("path");
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../../frontend/build")));
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "../../frontend", "build", "index.html")
+    )
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.json({ message: "API running..." });
+  });
+}
 
 // To send error to the frontend
 app.use((error, req, res, next) => {

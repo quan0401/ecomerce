@@ -2,11 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node src/server.js",
-    "server-prod": "--exec babel-node src/server.js",
+    "server-prod": "node src/server.js",
     "client": "npm start --prefix ../ecomerce-front-end",
     "dev": "concurrently --kill-others-on-fail \"npm start\" \"npm run client\""
   },
