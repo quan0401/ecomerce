@@ -97,8 +97,8 @@ function HeaderComponent() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand as={NavLink} to="/home">
-          Online-Shop
+        <Navbar.Brand as={NavLink} to="/home" className="me-4">
+          Shop
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

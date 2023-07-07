@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 function UserChatComponent() {
   const [hideChat, setHideChat] = useState(true);
   const [socket, setSocket] = useState();
-  const [chat, setChat] = useState([{ admin: "Hello" }]);
+  const [chat, setChat] = useState([{ admin: "Chat with Quan" }]);
   const [chatText, setChatText] = useState("");
   const [showDot, setShowDot] = useState(0);
   const [newChatConnection, setNewChatConnection] = useState(false);

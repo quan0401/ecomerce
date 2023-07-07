@@ -6,7 +6,7 @@ function FooterComponent() {
       <Container fluid>
         <Row>
           <Col className="text-white text-center py-3 bg-dark">
-            Shopping-online Copyright
+            If the app had issues. Please, let's me know!
           </Col>
         </Row>
       </Container>

@@ -1,6 +1,6 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
-function MetaComponent({ description = "Online shop", title = "Online shop" }) {
+function MetaComponent({ description = "Online shop", title = "Shop" }) {
   return (
     <HelmetProvider>
       <Helmet>

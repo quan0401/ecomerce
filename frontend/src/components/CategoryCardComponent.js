@@ -7,30 +7,50 @@ const images = [
   "images/img3.jpeg",
   "images/img4.jpeg",
   "images/img6.jpg",
-  "images/img7.png",
+  "images/img4.jpeg",
+  "images/img6.jpg",
 ];
 
-function CategoryCardComponent({ category, index }) {
+const defaultCategory = {
+  name: "All products",
+  description: "",
+  image:
+    "https://res.cloudinary.com/dg3fsapzu/image/upload/v1688709996/edpaj6amcog79qspwdwq.jpg",
+};
+
+function CategoryCardComponent({ category = defaultCategory, index }) {
   return (
     <Card>
-      <Card.Img
-        style={{
-          height: "400px",
-          objectFit: "cover",
-          objectPosition: "center",
-        }}
-        variant="top"
-        src={images[index]}
-      />
+      <Link
+        to={
+          category.name === defaultCategory.name
+            ? "/product-list/"
+            : "/product-list/category/" + category.name.replace("/", ",")
+        }
+      >
+        <Card.Img
+          style={{
+            height: "400px",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+          variant="top"
+          src={category.image || images[index]}
+        />
 
-      <Card.Body>
-        <Card.Title>{category.name}</Card.Title>
+        <Card.Body className="text-black">
+          <Card.Title
+            className={
+              category.name === defaultCategory.name ? "text-center" : ""
+            }
+          >
+            {category.name}
+          </Card.Title>
 
-        <Card.Text>{category.description}</Card.Text>
-        <Link to={"/product-list/category/" + category.name.replace("/", ",")}>
-          <Button variant="primary">Go somewhere</Button>
-        </Link>
-      </Card.Body>
+          <Card.Text>{category.description}</Card.Text>
+          {/* <Button variant="primary">Go somewhere</Button> */}
+        </Card.Body>
+      </Link>
     </Card>
   );
 }

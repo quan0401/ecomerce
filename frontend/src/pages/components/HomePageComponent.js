@@ -22,6 +22,9 @@ function HomePageComponent({ categories, getBestsellerApi }) {
       <MetaComponent />
       <ProductCarouselComponent bestseller={bestseller} />
       <Container className="mt-4">
+        <Row>
+          <CategoryCardComponent />
+        </Row>
         <Row xs={1} md={2} className="g-3">
           {categories &&
             categories.map((category, index) => (

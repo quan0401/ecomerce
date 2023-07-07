@@ -14,8 +14,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
-import { useSelector } from "react-redux";
-
 function RegisterPageComponent({ registerUser, userInfo }) {
   const navigate = useNavigate();
 
@@ -187,9 +185,6 @@ function RegisterPageComponent({ registerUser, userInfo }) {
               Submit
             </Button>
           </Form>
-          <Alert>User created</Alert>
-
-          <Alert variant="danger">User with that email already exists!</Alert>
         </Col>
       </Row>
     </Container>

@@ -12,6 +12,7 @@ const routes = [
   { path: "/", Component: HomePage },
 
   { path: "/login", Component: LoginPage },
+  { path: "/product-detail", Component: ProductDetailPage },
   { path: "/product-detail/:id", Component: ProductDetailPage },
 
   // Product paths
