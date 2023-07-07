@@ -21,7 +21,7 @@ import { useEffect, useState } from "react";
 
 import { getCategoriesAction } from "../redux/actions/categoryActions";
 
-import { getBestsellerApi } from "../service/productService";
+// import { getBestsellerApi } from "../service/productService";
 
 import socketIOClient from "socket.io-client";
 
@@ -80,8 +80,10 @@ function HeaderComponent() {
       socket.on(
         "server sends message from client to admin",
         ({ message, client }) => {
+          const audio = new Audio("/audio/chat-nofi.mp3");
           dispatch(setNewNofi(true));
           dispatch(setSocket(socket));
+          audio.play();
           dispatch(setChatRoom(client, message));
         }
       );
